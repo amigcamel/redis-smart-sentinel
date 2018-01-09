@@ -17,8 +17,10 @@ class SentinelProxy:
 
     def __getattr__(self, name):
         """Get attribute from Redis master or slave."""
-        if 'set' in name:
-            target = self.master
-        else:
+        master_key = ('set', 'hset', 'hmset', 
+                      'lset', 'lpush', 'rpush', 'expire')
+        if name not in master_key:
             target = self.slave
+        else:
+            target = self.master
         return getattr(target, name)
