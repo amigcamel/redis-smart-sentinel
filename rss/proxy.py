@@ -12,8 +12,10 @@ class SentinelProxy:
         """
         self.sentinel = Sentinel(
             [sentinel_host], socket_timeout=socket_timeout)
-        self.master = self.sentinel.master_for(master_name, socket_timeout=0.1)
-        self.slave = self.sentinel.slave_for(master_name, socket_timeout=0.1)
+        self.master = self.sentinel.master_for(master_name,
+                                               socket_timeout=socket_timeout)
+        self.slave = self.sentinel.slave_for(master_name,
+                                             socket_timeout=socket_timeout)
 
     def __getattr__(self, name):
         """Get attribute from Redis master or slave."""
