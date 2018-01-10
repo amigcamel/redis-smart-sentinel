@@ -5,7 +5,7 @@ from redis.sentinel import Sentinel
 class SentinelProxy:
     """Proxy for Redis sentinel."""
 
-    def __init__(self, sentinel_host, master_name, socket_timeout=0.1, **args):
+    def __init__(self, sentinel_host, master_name, socket_timeout=None, **args):
         """Initialize Redis sentinel connection.
 
         :params: sentinel_host: (host, port)
