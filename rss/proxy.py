@@ -24,7 +24,8 @@ class SentinelProxy:
         """Get attribute from Redis master or slave."""
         master_key = ('set', 'hset', 'hmset',
                       'lset', 'lpush', 'blpop',
-                      'brpop', 'rpush', 'expire', 'delete')
+                      'brpop', 'rpush', 'expire',
+                      'delete', 'incr')
         if name not in master_key:
             target = self.slave
         else:
